@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="INFO" shutdownHook="disable">
+    <appenders>
+        <RollingRandomAccessFile name="File" fileName="./logs/friend-management-service.log" filePattern="./logs/$${date:yyyyMMdd}/friend-management-service-%d{yyyy-MM-dd}.log.%i.gz" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %c - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="500MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+        <Console name="Console">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %c - %m%n"/>
+        </Console>
+        <Syslog name="Syslog" format="RFC5424" host="localhost" port="514" protocol="UDP" appName="friend-management-service" includeMDC="true" newLine="true" mdcID="mdc">
+            <LoggerFields>
+                <KeyValuePair key="AppMsg" value="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %c" />
+            </LoggerFields>
+        </Syslog>
+    </appenders>
+    <loggers>
+        <logger level="info" name="org.springframework" />
+        <logger level="info" name="org.hibernate" />
+        <logger level="info" name="com.zaxxer.hikari" />
+        <root level="info">
+            <appender-ref ref="File"/>
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Syslog" level="WARN"/>
+        </root>
+    </loggers>
+</configuration>
