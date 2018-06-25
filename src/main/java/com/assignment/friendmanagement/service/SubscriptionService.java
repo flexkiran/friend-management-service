@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface SubscriptionService {
 
-    List<Email> subscibe(String requestor, String target);
+    void subscribe(String requestor, String target);
 
-    List<Email> unSubscribe(String requestor, String target);
+    void unSubscribe(String requestor, String target);
 
     boolean isSubscribed(String requestor, String target);
 

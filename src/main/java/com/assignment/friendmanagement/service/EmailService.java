@@ -1,7 +1,6 @@
 package com.assignment.friendmanagement.service;
 
-import com.assignment.friendmanagement.exception.EmailAlreadyRegisteredException;
-import com.assignment.friendmanagement.exception.EmailNotRegisteredException;
+import com.assignment.friendmanagement.exception.ServiceException;
 import com.assignment.friendmanagement.model.Email;
 
 /**
@@ -9,8 +8,8 @@ import com.assignment.friendmanagement.model.Email;
  */
 public interface EmailService {
 
-    Email register(String emailAddress) throws EmailAlreadyRegisteredException;
+    Email register(String emailAddress) throws ServiceException;
 
-    Email findEmail(String emailAddress) throws EmailNotRegisteredException;
+    Email findEmail(String emailAddress) throws ServiceException;
 
 }

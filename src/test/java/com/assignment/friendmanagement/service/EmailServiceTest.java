@@ -1,7 +1,6 @@
 package com.assignment.friendmanagement.service;
 
-import com.assignment.friendmanagement.exception.EmailAlreadyRegisteredException;
-import com.assignment.friendmanagement.exception.EmailNotRegisteredException;
+import com.assignment.friendmanagement.exception.ServiceException;
 import com.assignment.friendmanagement.model.Email;
 import com.assignment.friendmanagement.repository.EmailRepository;
 import org.junit.Test;
@@ -32,7 +31,7 @@ public class EmailServiceTest {
         assertEquals(resultEmail, email);
     }
 
-    @Test(expected = EmailAlreadyRegisteredException.class)
+    @Test(expected = ServiceException.class)
     public void reRegisterEmailID() {
         when(emailRepository.existsByEmail(EMAIL_ID)).thenReturn(true);
         emailService.register(EMAIL_ID);
@@ -46,7 +45,7 @@ public class EmailServiceTest {
         assertEquals(resultEmail, email);
     }
 
-    @Test(expected = EmailNotRegisteredException.class)
+    @Test(expected = ServiceException.class)
     public void findInvalidEmailID() {
         when(emailRepository.findByEmail(EMAIL_ID)).thenReturn(null);
         emailService.findEmail(EMAIL_ID);

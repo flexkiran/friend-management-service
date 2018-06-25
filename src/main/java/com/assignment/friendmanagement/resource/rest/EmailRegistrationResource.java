@@ -29,7 +29,8 @@ public class EmailRegistrationResource {
     @ApiOperation(value = "Register email address")
     @ApiResponses(
             value = {
-                    @ApiResponse(code = 200, message = "Email address registered successfully")
+                    @ApiResponse(code = 200, message = "Email address registered successfully"),
+                    @ApiResponse(code = 2001, message = "Email address is already registered")
             }
     )
     @PostMapping("/register")

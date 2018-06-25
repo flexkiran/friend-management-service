@@ -1,21 +1,31 @@
 package com.assignment.friendmanagement.exception;
 
+import java.util.List;
+
 public class ServiceException extends RuntimeException {
 
-    private String errorCode;
+    private ErrorCode errorCode;
+    private List<String> errors;
 
-    public ServiceException(String errorCode, String message) {
-        super(message);
+    public ServiceException(ErrorCode errorCode, List<String> errors) {
+        super(errorCode.getDescription());
         this.errorCode = errorCode;
+        this.errors = errors;
     }
 
-    public String getErrorCode() {
+    public ErrorCode getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(String errorCode) {
+    public void setErrorCode(ErrorCode errorCode) {
         this.errorCode = errorCode;
     }
 
+    public List<String> getErrors() {
+        return errors;
+    }
 
+    public void setErrors(List<String> errors) {
+        this.errors = errors;
+    }
 }
