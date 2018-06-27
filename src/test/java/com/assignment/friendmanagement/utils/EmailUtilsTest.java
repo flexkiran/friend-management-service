@@ -8,6 +8,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
+ * Test cases for email retrieval
  * Created by Kiran on 26/6/18.
  */
 public class EmailUtilsTest {
@@ -41,7 +42,6 @@ public class EmailUtilsTest {
         String text = "random test x...@ I am invalid email";
         List<String> strings = emailUtils.retrieveEmailIdsFromText(text);
         Assert.assertEquals(strings.size(), 0);
-
     }
 
 }

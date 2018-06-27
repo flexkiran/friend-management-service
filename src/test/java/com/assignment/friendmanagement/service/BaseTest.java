@@ -7,6 +7,9 @@ import org.mockito.Mock;
 
 import static org.mockito.Mockito.when;
 
+/**
+ * Base Test Class
+ */
 abstract public class BaseTest {
 
     @Mock

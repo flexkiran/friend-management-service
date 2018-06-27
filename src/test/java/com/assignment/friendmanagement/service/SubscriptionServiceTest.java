@@ -7,14 +7,12 @@ import com.assignment.friendmanagement.model.SubscriptionKey;
 import com.assignment.friendmanagement.model.SubscriptionStatus;
 import com.assignment.friendmanagement.repository.SubscriptionRepo;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
@@ -22,14 +20,15 @@ import java.util.List;
 
 import static com.assignment.friendmanagement.exception.ErrorCode.ALREADY_SUBSCRIBED_FOR_UPDATES;
 import static com.assignment.friendmanagement.exception.ErrorCode.ALREADY_UNSUBSCRIBED_FROM_UPDATES;
-import static com.assignment.friendmanagement.model.SubscriptionStatus.*;
 import static com.assignment.friendmanagement.model.SubscriptionStatus.SUBSCRIBED;
 import static com.assignment.friendmanagement.model.SubscriptionStatus.UNSUBSCRIBED;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-
+/**
+ * Test for Subscription service
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class SubscriptionServiceTest extends BaseTest {
 

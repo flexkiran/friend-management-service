@@ -12,6 +12,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+/**
+ * Test for Email service
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class EmailServiceTest {
 
