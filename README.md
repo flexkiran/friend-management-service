@@ -17,7 +17,8 @@ Response Format
   "success":true
 }
 ```
-Error codes
+Error codes  
+
 2001	- Email address is already registered
 
 # 1. User can add friend connection between two email ids
@@ -42,7 +43,8 @@ Response Format
 ``` 
   
   
-Error codes 
+Error codes   
+
 2002	- Email address is not registered  
 3001  - Email addresses are already connected as friends  
 3003  - One email have blocked another email's updates
@@ -66,8 +68,10 @@ Response Format
   "count" : 1 ,
   "success": true
 }
-```
-Error codes
+```  
+
+Error codes  
+
 2002	- Email address is not registered
 
 # 3. User can retrieve the common friends list between two email addresse
@@ -94,8 +98,109 @@ Response Format
   "count" : 1   
 }
 ```
-Error codes
-2002	- Email address is not registered
+Error codes   
+
+2002	- Email address is not registered  
+
+# 4. User should be able to subscribe for updates from one email address to another email address  
+URL - /api/notification/subscribe .  
+Methos - POST  
+Request Format
+```
+{ 
+  'requestor':'andy@example.com',
+  'target':'john@example.com' 
+}
+```
+Response Format
+```
+{
+  "success": true
+}
+```
+Error codes   
+
+2002	- Email address is not registered     
+4001	- Already subscribed for updates    
+
+# 5. User should be able to block updates for one email address from another email address 
+#    (No matter wheteher emails are friend or not)
+URL - /api/notification/unsubscribe  
+Methos - POST
+Request Format
+```
+{ 
+  'requestor':'andy@example.com',
+  'target':'john@example.com' 
+}
+```
+Response Format
+```
+{
+  "success": true
+}
+```
+Error codes   
+
+2002	- Email address is not registered     
+5001	- Already unsubscribed from further updates        
+
+# 6. User should be able to send message     
+URL - /api/message/send  
+Methos - POST
+Request Format
+```
+{ 
+  'sender':'andy@example.com',
+  'text':'Hello john@example.com how are you?' 
+}
+```
+Response Format
+```
+{
+  "recipients": [
+    "john@example.com"
+  ],
+  "success": true
+}
+```
+Error codes   
+
+2002	- Email address is not registered     
+
+
+### H3  Error format   
+
+```  
+{
+  "status": "BAD_REQUEST",
+  "timestamp": "27-06-2018 11:19:30",
+  "message": "validation failed",
+  "errorCode": 0,
+  "errors": [
+    "Friend list should contain exactly 2 emails",
+    "Invalid email ids"
+  ]
+}
+```
+
+### H3  Error Codes and messages
+
+```
+2001 - "Email address is already registered"
+2002 - "Email address is not registered"
+3001 - "Email addresses are already connected as friends"
+3002 - "Email addresses are not connected as friends"
+3003 - "One email have blocked another email's updates"
+4001 - "Already subscribed for updates"
+5001 - "Already unsubscribed from further updates"
+```
+
+Cucumber stories can be found [here link](https://github.com/flexkiran/friend-management-service/blob/master/src/itest/resources/friendmanagement.feature)
+
+ 
+
+
 
 
 
