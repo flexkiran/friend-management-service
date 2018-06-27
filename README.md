@@ -124,7 +124,7 @@ Error codes
 4001	- Already subscribed for updates    
 
 # 5. User should be able to block updates for one email address from another email address 
-#    (No matter wheteher emails are friend or not)
+     (No matter wheteher emails are friend or not)
 URL - /api/notification/unsubscribe  
 Methos - POST
 Request Format
@@ -169,7 +169,7 @@ Error codes
 2002	- Email address is not registered     
 
 
-### H3  Error format   
+###   Error format   
 
 ```  
 {
@@ -184,7 +184,7 @@ Error codes
 }
 ```
 
-### H3  Error Codes and messages
+###   Error Codes and messages
 
 ```
 2001 - "Email address is already registered"
