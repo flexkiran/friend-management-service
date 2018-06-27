@@ -196,7 +196,7 @@ Error codes
 5001 - "Already unsubscribed from further updates"
 ```
 
-Cucumber stories can be found [here link](https://github.com/flexkiran/friend-management-service/blob/master/src/itest/resources/friendmanagement.feature)
+Cucumber stories can be found [here](https://github.com/flexkiran/friend-management-service/blob/master/src/itest/resources/friendmanagement.feature)
 
  
 
