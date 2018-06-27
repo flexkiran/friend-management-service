@@ -2,15 +2,18 @@ package com.assignment.friendmanagement.model.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class SubscriptionRequest {
 
     @NotNull(message = "email must be provided")
     @Email(message = "Invalid email id")
+    @Size(min = 3 , max = 254 ,message = "email id should have min 3 characters")
     private String requestor;
 
     @NotNull(message = "email must be provided")
     @Email(message = "Invalid email id")
+    @Size(min = 3 , max = 254 ,message = "email id should have min 3 characters")
     private String target;
 
     public SubscriptionRequest() {

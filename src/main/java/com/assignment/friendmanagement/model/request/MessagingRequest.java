@@ -1,17 +1,22 @@
 package com.assignment.friendmanagement.model.request;
 
+import com.assignment.friendmanagement.validator.XSSConstraint;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class MessagingRequest {
 
     @Email(message = "invalid email format")
     @NotNull(message = "sender is required")
+    @Size(min = 3 , max = 254 ,message = "email id should have min 3 characters")
     private String sender;
 
     @NotEmpty(message = "text should not be empty")
     @NotNull(message = "text is required")
+    @XSSConstraint
     private String text;
 
     public MessagingRequest() {

@@ -10,7 +10,6 @@ public enum ErrorCode {
     FRIENDS_CONNECTION_ALREADY_REGISTERED(3001,"Email addresses are already connected as friends"),
     FRIENDS_CONNECTION_NOT_FOUND(3002,"Email addresses are not connected as friends"),
     EMAILS_BLOCKED_FOR_UPDATES(3003,"One email have blocked another email's updates"),
-    BOTH_EMAILS_ARE_SAME(3003,"Both email addresses are same"),
     ALREADY_SUBSCRIBED_FOR_UPDATES(4001,"Already subscribed for updates"),
     ALREADY_UNSUBSCRIBED_FROM_UPDATES(5001,"Already unsubscribed from further updates");
 
