@@ -1,10 +1,8 @@
 package com.assignment.friendmanagement.service;
 
-import com.assignment.friendmanagement.model.Email;
-
-import java.util.List;
+import com.assignment.friendmanagement.model.response.MessageRecipientsResponse;
 
 public interface MessagingService {
 
-    List<Email> sendMessage(String sender,String text);
+    MessageRecipientsResponse sendMessage(String sender, String text);
 }

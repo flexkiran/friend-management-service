@@ -1,6 +1,7 @@
 package com.assignment.friendmanagement.service;
 
-import com.assignment.friendmanagement.model.Email;
+import com.assignment.friendmanagement.model.Subscription;
+import com.assignment.friendmanagement.model.SubscriptionStatus;
 
 import java.util.List;
 
@@ -9,11 +10,10 @@ import java.util.List;
  */
 public interface SubscriptionService {
 
-    void subscribe(String requestor, String target);
+    void subscribe(String requestorEmail, String targetEmail,SubscriptionStatus status);
 
-    void unSubscribe(String requestor, String target);
+    boolean isSubscribed(String requestorEmail, String targetEmail, SubscriptionStatus status);
 
-    boolean isSubscribed(String requestor, String target);
+    List<Subscription> getSubscriptions(String targetEmail, SubscriptionStatus status);
 
-    boolean isUnSubscribed(String requestor, String target);
 }

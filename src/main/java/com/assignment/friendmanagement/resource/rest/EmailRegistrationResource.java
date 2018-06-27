@@ -2,7 +2,7 @@ package com.assignment.friendmanagement.resource.rest;
 
 import com.assignment.friendmanagement.model.request.EmailRequest;
 import com.assignment.friendmanagement.model.response.OperationSuccessResponse;
-import com.assignment.friendmanagement.service.EmailService;
+import com.assignment.friendmanagement.service.PersonService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -24,7 +24,7 @@ public class EmailRegistrationResource {
     private Logger logger = LogManager.getLogger();
 
     @Autowired
-    private EmailService emailService;
+    private PersonService emailService;
 
     @ApiOperation(value = "Register email address")
     @ApiResponses(

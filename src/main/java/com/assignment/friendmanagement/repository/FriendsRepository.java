@@ -1,7 +1,9 @@
 package com.assignment.friendmanagement.repository;
 
-import com.assignment.friendmanagement.model.Email;
-import com.assignment.friendmanagement.model.Friend;
+import com.assignment.friendmanagement.model.Person;
+import com.assignment.friendmanagement.model.Friends;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -9,28 +11,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class FriendsRepository {
+public interface FriendsRepository extends CrudRepository<Friends, Long> {
 
-    List<Friend> friends = new ArrayList<>();
+    @Query(value = "SELECT * FROM FRIENDS f WHERE " +
+            "(f.person1 = ?1 AND f.person2 = ?2) OR (f.person1 = ?2 AND f.person2 = ?1)",
+            nativeQuery = true)
+    List<Friends> getFriendship(Person person1, Person person2);
 
-    public Friend isExists(Email email1, Email email2) {
-        return friends.stream().filter((Friend f) -> {
-            return ((f.getEmail1().equals(email1) && f.getEmail2().equals(email2))
-                    || (f.getEmail1().equals(email2) && f.getEmail2().equals(email1)));
-        }).findFirst()
-                .orElse(null);
-    }
-
-    public Friend save(Email email1, Email email2) {
-        Friend friend = new Friend(friends.size() + 1, email1, email2);
-        friends.add(friend);
-        return friend;
-    }
-
-    public List<Email> getAllFriends(Email email) {
-        return friends.stream().filter(f -> f.getEmail1().equals(email) || f.getEmail2().equals(email))
-                .map(friend -> friend.getEmail2().equals(email)?friend.getEmail1():friend.getEmail2())
-                .collect(Collectors.toList());
-    }
+    @Query(value = "SELECT * FROM FRIENDS f WHERE (f.person1 = ?1 OR f.person2 = ?1)",
+            nativeQuery = true)
+    List<Friends> getAllFriends(Person person);
 
 }

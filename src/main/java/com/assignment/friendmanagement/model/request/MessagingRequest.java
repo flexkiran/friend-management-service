@@ -6,16 +6,19 @@ import javax.validation.constraints.NotNull;
 
 public class MessagingRequest {
 
-    @Email
-    @NotNull
+    @Email(message = "invalid email format")
+    @NotNull(message = "sender is required")
     private String sender;
 
-    @NotEmpty
+    @NotEmpty(message = "text should not be empty")
+    @NotNull(message = "text is required")
     private String text;
 
-    public MessagingRequest(){}
+    public MessagingRequest() {
+    }
 
-    public MessagingRequest(@Email @NotNull String sender, @NotEmpty String text) {
+    public MessagingRequest(@Email(message = "invalid email format") @NotNull(message = "sender is required") String sender,
+                            @NotEmpty(message = "text should not be empty") @NotNull(message = "text is required") String text) {
         this.sender = sender;
         this.text = text;
     }

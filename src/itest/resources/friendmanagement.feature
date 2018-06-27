@@ -1,5 +1,5 @@
 Feature: Friends Management Service
-  Scenario: 1 : User should be able to create a friend connection between two email addresses.
+  Scenario: 1. User should be able to create a friend connection between two email addresses.
     Given Below email addresses exists
       | email             |
       | andy@example.com  |
@@ -8,7 +8,7 @@ Feature: Friends Management Service
       | rose@example.com  |
       | frank@example.com |
       | grace@example.com |
-      | kaet@example.com  |
+      | kate@example.com  |
 
      When User creates connection between
       | email1           | email2           |
@@ -16,7 +16,7 @@ Feature: Friends Management Service
 
      Then User should receive success message
 
-  Scenario: 2 : User should be able to retrieve friends list for an email address`
+  Scenario: 2. User should be able to retrieve friends list for an email address`
     Given Below email addresses exists
       | email             |
       | andy@example.com  |
@@ -25,11 +25,13 @@ Feature: Friends Management Service
       | rose@example.com  |
       | frank@example.com |
       | grace@example.com |
-      | kaet@example.com  |
+      | kate@example.com  |
 
-    Given below email addresses are friend
+     When User creates connection between
       | email1           | email2           |
       | andy@example.com | john@example.com |
+
+     Then User should receive success message
 
      When User retrieves friend list for andy@example.com
 
@@ -46,7 +48,7 @@ Feature: Friends Management Service
       | rose@example.com  |
       | frank@example.com |
       | grace@example.com |
-      | kaet@example.com  |
+      | kate@example.com  |
 
     Given below email addresses are friend
       | email1           | email2           |
@@ -75,7 +77,7 @@ Feature: Friends Management Service
       | rose@example.com | frank@example.com |
 
      Then User should receive success message
-
+  #
   Scenario: 5.a : User should be able to block updates from a friends email address.
     Given Below email addresses exists
       | email             |
@@ -85,7 +87,7 @@ Feature: Friends Management Service
       | rose@example.com  |
       | frank@example.com |
       | grace@example.com |
-      | kaet@example.com  |
+      | kate@example.com  |
 
     Given below email addresses are friend
       | email1           | email2           |
@@ -107,7 +109,7 @@ Feature: Friends Management Service
       | rose@example.com  |
       | frank@example.com |
       | grace@example.com |
-      | kaet@example.com  |
+      | kate@example.com  |
 
     Given below email addresses are not friend
       | email1            | email2           |
@@ -126,8 +128,10 @@ Feature: Friends Management Service
       | frank@example.com | kane@example.com |
 
      Then User should receive failure message
+      | errorCode | message                                        |
+      | 3003      | One email have blocked another email's updates |
 
-  Scenario: 6 : User should be able to retrieve all email addresses that can receive updates from an email address.
+  Scenario: 6.a  User should be able to retrieve all email addresses that can receive updates from an email address.
     Given Below email addresses exists
       | email             |
       | andy@example.com  |
@@ -136,7 +140,7 @@ Feature: Friends Management Service
       | rose@example.com  |
       | frank@example.com |
       | grace@example.com |
-      | kaet@example.com  |
+      | kate@example.com  |
 
     Given below email addresses are friend
       | email1           | email2           |
@@ -156,4 +160,49 @@ Feature: Friends Management Service
       | emails                                              | success |
       | john@example.com;grace@example.com;kate@example.com | true    |
 
+Scenario: 6.b  User should be able to retrieve all email addresses that can receive updates from an email address.
+    Given Below email addresses exists
+      | email             |
+      | andy@example.com  |
+      | john@example.com  |
+      | kane@example.com  |
+      | rose@example.com  |
+      | frank@example.com |
+      | grace@example.com |
+      | kate@example.com  |
 
+    Given below email addresses are friend
+      | email1           | email2           |
+      | andy@example.com | john@example.com |
+      | andy@example.com | frank@example.com |
+
+     When User subscribes to updates for
+      | requestor         | target           |
+      | grace@example.com | andy@example.com |
+      | kane@example.com  | andy@example.com |
+
+     Then User should receive success message
+
+     When message is sent with
+      | text                          | sender           |
+      | Hello World! nobody is here   | andy@example.com |
+
+     Then User receives following subscribers
+      | emails                                                                  | success |
+      | john@example.com;frank@example.com;grace@example.com;kane@example.com   | true    |
+
+     When message is sent with
+      | text                               | sender           |
+      | Hello World! I dont have friends   | kate@example.com |
+
+     Then User receives following subscribers
+      | emails     | success |
+      |            | true    |
+
+     When message is sent with
+      | text                               | sender           |
+      | Hello World! I am not registered   | unregisterd@example.com |
+
+     Then User should receive failure message
+      | errorCode | message                         |
+      | 2002      | Email address is not registered |

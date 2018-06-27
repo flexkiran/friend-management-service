@@ -2,6 +2,7 @@ package com.assignment.friendmanagement.resource.rest;
 
 import com.assignment.friendmanagement.model.request.MessagingRequest;
 import com.assignment.friendmanagement.model.request.SubscriptionRequest;
+import com.assignment.friendmanagement.model.response.MessageRecipientsResponse;
 import com.assignment.friendmanagement.model.response.OperationSuccessResponse;
 import com.assignment.friendmanagement.service.MessagingService;
 import com.assignment.friendmanagement.service.SubscriptionService;
@@ -31,14 +32,16 @@ public class MessagingResource {
     @ApiOperation(value = "Send message to all subscribers")
     @ApiResponses(
             value = {
-                    @ApiResponse(code = 200, message = "Message sent successfully")
+                    @ApiResponse(code = 200, message = "Message sent successfully"),
+                    @ApiResponse(code = 2002, message = "Email address is not registered")
             }
     )
     @PostMapping("/send")
-    public OperationSuccessResponse send(@Valid @RequestBody MessagingRequest messagingRequest) throws Exception {
+    public MessageRecipientsResponse send(@Valid @RequestBody MessagingRequest messagingRequest) throws Exception {
         logger.debug("/api/message/send  = ", messagingRequest);
-        messagingService.sendMessage(messagingRequest.getSender(), messagingRequest.getText());
-        return new OperationSuccessResponse(true);
+        MessageRecipientsResponse msgResponse = messagingService.sendMessage(messagingRequest.getSender(), messagingRequest.getText());
+        logger.debug("{} -> {}",messagingRequest,msgResponse);
+        return msgResponse;
     }
 
 }

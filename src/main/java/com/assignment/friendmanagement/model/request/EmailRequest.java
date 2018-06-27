@@ -5,8 +5,8 @@ import javax.validation.constraints.NotNull;
 
 public class EmailRequest {
 
-    @NotNull
-    @Email
+    @NotNull(message = "email must be provided")
+    @Email(message = "Invalid email id")
     private String email;
 
     public String getEmail() {
@@ -17,9 +17,10 @@ public class EmailRequest {
         this.email = email;
     }
 
-    public EmailRequest(){}
+    public EmailRequest() {
+    }
 
-    public EmailRequest(@NotNull @Email String email) {
+    public EmailRequest(@NotNull @Email(message = "Invalid email id") String email) {
         this.email = email;
     }
 

@@ -13,12 +13,12 @@ public class EmailListResponse {
     public EmailListResponse(List<String> emails, boolean success) {
         this.emails = emails;
         this.success = success;
-        this.count = emails!=null?emails.size():0;
+        this.count = emails != null ? emails.size() : 0;
     }
 
     public void setEmails(List<String> emails) {
         this.emails = emails;
-        this.count = emails!=null?emails.size():0;
+        this.count = emails != null ? emails.size() : 0;
     }
 
     public void setSuccess(boolean success) {

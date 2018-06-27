@@ -7,10 +7,10 @@ import java.util.List;
  */
 public interface FriendsService {
 
-    boolean makeNewFriend(String emailAddress1, String emailAddress2);
+    boolean makeFriends(String emailAddress1, String emailAddress2);
 
-    List<String> getAllFriends(String emailAddress);
+    List<String> getFriends(String emailAddress);
 
-    List<String> getAllCommonFriends(String emailAddress1, String emailAddress2);
+    List<String> getCommonFriends(String emailAddress1, String emailAddress2);
 
 }

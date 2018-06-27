@@ -1,20 +1,16 @@
 package com.assignment.friendmanagement.wrapper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class CommonFriendResult {
 
-    private List<String> emails;
+    private String emails;
     private int count;
     private boolean success;
 
-    public List<String> getEmails() {
+    public String getEmails() {
         return emails;
     }
 
-    public void setEmails(List<String> emails) {
+    public void setEmails(String emails) {
         this.emails = emails;
     }
 
@@ -35,11 +31,9 @@ public class CommonFriendResult {
     }
 
     public CommonFriendResult(String emails, int count, boolean success) {
-        if (emails != null) {
-            this.emails = Arrays.asList(emails.split(";"));
-        } else {
-            this.emails = new ArrayList<String>();
-        }
+        System.out.println("===============");
+        System.out.println(emails);
+        this.emails = emails;
         this.count = count;
         this.success = success;
     }

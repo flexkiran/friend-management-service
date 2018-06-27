@@ -1,6 +1,5 @@
 package com.assignment.friendmanagement.resource.rest;
 
-import com.assignment.friendmanagement.model.Email;
 import com.assignment.friendmanagement.model.request.EmailPairRequest;
 import com.assignment.friendmanagement.model.request.EmailRequest;
 import com.assignment.friendmanagement.model.response.EmailListResponse;
@@ -36,13 +35,13 @@ public class FriendshipResource {
                     @ApiResponse(code = 200, message = "Added new friend successfully"),
                     @ApiResponse(code = 2002, message = "Email address is not registered"),
                     @ApiResponse(code = 3001, message = "Email addresses are already connected as friends"),
-                    @ApiResponse(code = 3001, message = "One email have blocked another email's updates")
+                    @ApiResponse(code = 3003, message = "One email have blocked another email's updates")
             }
     )
     @PostMapping("/add")
     public OperationSuccessResponse addNewFriend(@Valid @RequestBody EmailPairRequest emailPairRequest) {
         logger.debug("/api/friend/add  = ", emailPairRequest);
-        friendshipService.makeNewFriend(emailPairRequest.getFriends().get(0), emailPairRequest.getFriends().get(1));
+        friendshipService.makeFriends(emailPairRequest.getFriends().get(0), emailPairRequest.getFriends().get(1));
         return new OperationSuccessResponse(true);
     }
 
@@ -53,10 +52,10 @@ public class FriendshipResource {
                     @ApiResponse(code = 2002, message = "Email address is not registered"),
             }
     )
-    @PostMapping("/getall")
+    @PostMapping("/all")
     public EmailListResponse getAllFriends(@Valid @RequestBody EmailRequest emailRequest) {
-        logger.debug("/api/friend/getall  = ", emailRequest);
-        List<String> allFriends = friendshipService.getAllFriends(emailRequest.getEmail());
+        logger.debug("/api/friend/all  = ", emailRequest);
+        List<String> allFriends = friendshipService.getFriends(emailRequest.getEmail());
         return new EmailListResponse(allFriends,true);
     }
 
@@ -67,10 +66,10 @@ public class FriendshipResource {
                     @ApiResponse(code = 2002, message = "Email address is not registered"),
             }
     )
-    @PostMapping("/getcommon")
+    @PostMapping("/common")
     public EmailListResponse getCommonFriends(@Valid @RequestBody EmailPairRequest emailPairRequest) {
-        logger.debug("/api/friend/getcommon  = ", emailPairRequest);
-        List<String> allCommonFriends = friendshipService.getAllCommonFriends(emailPairRequest.getFriends().get(0), emailPairRequest.getFriends().get(1));
+        logger.debug("/api/friend/common  = ", emailPairRequest);
+        List<String> allCommonFriends = friendshipService.getCommonFriends(emailPairRequest.getFriends().get(0), emailPairRequest.getFriends().get(1));
         return new EmailListResponse(allCommonFriends,true);
     }
 

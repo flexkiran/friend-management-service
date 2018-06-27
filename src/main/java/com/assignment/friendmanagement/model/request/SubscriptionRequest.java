@@ -5,18 +5,19 @@ import javax.validation.constraints.NotNull;
 
 public class SubscriptionRequest {
 
-    @Email
-    @NotNull
-    private String  requestor;
+    @NotNull(message = "email must be provided")
+    @Email(message = "Invalid email id")
+    private String requestor;
 
-    @Email
-    @NotNull
+    @NotNull(message = "email must be provided")
+    @Email(message = "Invalid email id")
     private String target;
 
     public SubscriptionRequest() {
     }
 
-    public SubscriptionRequest(@Email @NotNull String requestor, @Email @NotNull String target) {
+    public SubscriptionRequest(@NotNull(message = "email must be provided") @Email(message = "Invalid email id") String requestor,
+                               @NotNull(message = "email must be provided") @Email(message = "Invalid email id") String target) {
         this.requestor = requestor;
         this.target = target;
     }

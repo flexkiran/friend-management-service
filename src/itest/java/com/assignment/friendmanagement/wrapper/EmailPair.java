@@ -29,8 +29,8 @@ public class EmailPair {
     @Override
     public String toString() {
         return "EmailPair{" +
-                "email1='" + email1 + '\'' +
-                ", email2='" + email2 + '\'' +
+                "person1='" + email1 + '\'' +
+                ", person2='" + email2 + '\'' +
                 '}';
     }
 }

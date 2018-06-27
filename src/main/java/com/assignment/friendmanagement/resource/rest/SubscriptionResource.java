@@ -1,5 +1,6 @@
 package com.assignment.friendmanagement.resource.rest;
 
+import com.assignment.friendmanagement.model.SubscriptionStatus;
 import com.assignment.friendmanagement.model.request.SubscriptionRequest;
 import com.assignment.friendmanagement.model.response.OperationSuccessResponse;
 import com.assignment.friendmanagement.service.SubscriptionService;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+
+import static com.assignment.friendmanagement.model.SubscriptionStatus.SUBSCRIBED;
+import static com.assignment.friendmanagement.model.SubscriptionStatus.UNSUBSCRIBED;
 
 
 @RestController
@@ -37,7 +41,7 @@ public class SubscriptionResource {
     @PostMapping("/subscribe")
     public OperationSuccessResponse subscribe(@Valid @RequestBody SubscriptionRequest subscriptionRequest)  {
         logger.debug("/api/notifications/subscribe  = ", subscriptionRequest);
-        subscriptionService.subscribe(subscriptionRequest.getRequestor(),subscriptionRequest.getTarget());
+        subscriptionService.subscribe(subscriptionRequest.getRequestor(),subscriptionRequest.getTarget(), SUBSCRIBED);
         return new OperationSuccessResponse(true);
     }
 
@@ -52,7 +56,7 @@ public class SubscriptionResource {
     @PostMapping("/unsubscribe")
     public OperationSuccessResponse unSubscribe(@Valid @RequestBody SubscriptionRequest subscriptionRequest)  {
         logger.debug("/api/notifications/unsubscribe  = ", subscriptionRequest);
-        subscriptionService.unSubscribe(subscriptionRequest.getRequestor(),subscriptionRequest.getTarget());
+        subscriptionService.subscribe(subscriptionRequest.getRequestor(),subscriptionRequest.getTarget(),UNSUBSCRIBED);
         return new OperationSuccessResponse(true);
     }
 

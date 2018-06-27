@@ -7,6 +7,12 @@ public class ServiceException extends RuntimeException {
     private ErrorCode errorCode;
     private List<String> errors;
 
+
+    public ServiceException(ErrorCode errorCode) {
+        super(errorCode.getDescription());
+        this.errorCode = errorCode;
+    }
+
     public ServiceException(ErrorCode errorCode, List<String> errors) {
         super(errorCode.getDescription());
         this.errorCode = errorCode;

@@ -1,19 +1,23 @@
 package com.assignment.friendmanagement.model.request;
 
+import com.assignment.friendmanagement.validator.EmailPairConstraint;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
 public class EmailPairRequest {
 
-
-    @NotNull
-    @Size(max = 2,min = 2)
+    @EmailPairConstraint
+    @NotNull(message = "Friends list can not be empty")
+    @Size(max = 2, min = 2, message = "Friend list should contain exactly 2 emails")
     private List<String> friends;
 
-    public EmailPairRequest(){}
+    public EmailPairRequest() {
+    }
 
-    public EmailPairRequest(@NotNull @Size(max = 2, min = 2) List<String> friends) {
+    public EmailPairRequest(@NotNull(message = "Friends list can not be empty") @Size(max = 2, min = 2, message = "Friend list should contain exactly 2 emails")
+                                    List<String> friends) {
         this.friends = friends;
     }
 
