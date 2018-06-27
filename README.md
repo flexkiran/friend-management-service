@@ -39,10 +39,12 @@ Response Format
 {
   "success":true
 }
-```
-Error codes
-2002	- Email address is not registered
-3001  - Email addresses are already connected as friends
+``` 
+  
+  
+Error codes 
+2002	- Email address is not registered  
+3001  - Email addresses are already connected as friends  
 3003  - One email have blocked another email's updates
 
 # 2. User can retrieve the friends list for an email address. 
