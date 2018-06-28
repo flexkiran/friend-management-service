@@ -1,5 +1,65 @@
 # friend-management-service
-API server that does simple "Friend Management" 
+API server that does simple "Friend Management"   
+
+
+### Build and run project
+
+``` 
+mvn clean install
+java -jar target/friend-management-service-1.0-SNAPSHOT.jar
+
+```
+
+###  Docker  
+
+docker run -p 5000:8080 k4kiran/friend-management-service:1.0-SNAPSHOT
+
+### Databse   
+
+Application used H2 database
+
+```
+http://localhost:8080/h2  
+
+```
+
+###  Documenatation
+
+This project uses swagger for documentation.
+Once you run this app documenatation will be available on
+http://host:8080/swagger-ui.html
+
+Cucumber stories can be found [here](https://github.com/flexkiran/friend-management-service/blob/master/src/itest/resources/friendmanagement.feature)  
+
+
+###   Error format   
+
+```  
+{
+  "status": "BAD_REQUEST",
+  "timestamp": "27-06-2018 11:19:30",
+  "message": "validation failed",
+  "errorCode": 0,
+  "errors": [
+    "Friend list should contain exactly 2 emails",
+    "Invalid email ids"
+  ]
+}
+```
+
+###   Error Codes and messages
+
+```
+2001 - "Email address is already registered"
+2002 - "Email address is not registered"
+3001 - "Email addresses are already connected as friends"
+3002 - "Email addresses are not connected as friends"
+3003 - "One email have blocked another email's updates"
+4001 - "Already subscribed for updates"
+5001 - "Already unsubscribed from further updates"
+```
+
+
 
 # User Stories
 # 0. User can register email id using 
@@ -168,42 +228,3 @@ Error codes
 
 2002	- Email address is not registered     
 
-
-###   Error format   
-
-```  
-{
-  "status": "BAD_REQUEST",
-  "timestamp": "27-06-2018 11:19:30",
-  "message": "validation failed",
-  "errorCode": 0,
-  "errors": [
-    "Friend list should contain exactly 2 emails",
-    "Invalid email ids"
-  ]
-}
-```
-
-###   Error Codes and messages
-
-```
-2001 - "Email address is already registered"
-2002 - "Email address is not registered"
-3001 - "Email addresses are already connected as friends"
-3002 - "Email addresses are not connected as friends"
-3003 - "One email have blocked another email's updates"
-4001 - "Already subscribed for updates"
-5001 - "Already unsubscribed from further updates"
-```
-    
-###  Documenatation
-
-This project uses swagger for documentation.
-Once you run this app documenatation will be available on
-http://host:port/swagger-ui.html
-
-Cucumber stories can be found [here](https://github.com/flexkiran/friend-management-service/blob/master/src/itest/resources/friendmanagement.feature)  
-
-###  Docker  
-
-docker run -p 5000:8080 k4kiran/friend-management-service:1.0-SNAPSHOT
