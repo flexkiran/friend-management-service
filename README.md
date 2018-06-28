@@ -10,16 +10,18 @@ java -jar target/friend-management-service-1.0-SNAPSHOT.jar
 
 ```
 
-###  Docker  
+###  Docker   
 
+```
 docker run -p 5000:8080 k4kiran/friend-management-service:1.0-SNAPSHOT
+```
 
 ### Databse   
 
-Application used H2 database
+Application is using H2 database
 
 ```
-http://localhost:8080/h2  
+http://host:8080/h2  
 
 ```
 
