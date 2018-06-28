@@ -77,7 +77,7 @@ Feature: Friends Management Service
       | rose@example.com | frank@example.com |
 
      Then User should receive success message
-  #
+  
   Scenario: 5.a : User should be able to block updates from a friends email address.
     Given Below email addresses exists
       | email             |

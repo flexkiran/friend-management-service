@@ -14,7 +14,7 @@ import java.sql.Statement;
 @ContextConfiguration(classes = Application.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class SpringIntegrationTest {
+public class SpringIT {
 
     @Value("${spring.datasource.driver-class-name}")
     private String dbDriver;

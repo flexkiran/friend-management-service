@@ -23,7 +23,7 @@ import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInA
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-public class StepDefsIntegrationTest extends SpringIntegrationTest {
+public class StepDefsIntegrationTest extends SpringIT {
 
     @Value("${server.port}")
     private String port;
