@@ -195,8 +195,17 @@ Error codes
 4001 - "Already subscribed for updates"
 5001 - "Already unsubscribed from further updates"
 ```
+    
+###  Documenatation
+
+This project uses swagger for documentation.
+Once you run this app documenatation will be available on
+http://host:port/swagger-ui.html
 
 Cucumber stories can be found [here](https://github.com/flexkiran/friend-management-service/blob/master/src/itest/resources/friendmanagement.feature)
+
+
+
 
  
 
