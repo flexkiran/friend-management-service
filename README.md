@@ -202,15 +202,8 @@ This project uses swagger for documentation.
 Once you run this app documenatation will be available on
 http://host:port/swagger-ui.html
 
-Cucumber stories can be found [here](https://github.com/flexkiran/friend-management-service/blob/master/src/itest/resources/friendmanagement.feature)
+Cucumber stories can be found [here](https://github.com/flexkiran/friend-management-service/blob/master/src/itest/resources/friendmanagement.feature)  
 
+###  Docker  
 
-
-
- 
-
-
-
-
-
-
+docker run -p 5000:8080 k4kiran/friend-management-service:1.0-SNAPSHOT
